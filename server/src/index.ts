@@ -1,4 +1,6 @@
 import express, {Application} from 'express';
+import cors from 'cors';
+
 import indexRoute from './routes/indexRoutes';
 import gamesRoutes from './routes/gamesRoutes';
 
@@ -13,6 +15,9 @@ class Server {
 
     config(): void{
         this.app.set('port', process.env.PORT || 3000);
+        this.app.use(cors());
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({extended: false}));
     }
 
     routes(): void{
